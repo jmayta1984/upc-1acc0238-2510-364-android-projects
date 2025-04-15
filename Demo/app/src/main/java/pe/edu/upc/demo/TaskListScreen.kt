@@ -14,6 +14,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -25,10 +26,14 @@ import androidx.compose.ui.tooling.preview.Preview
 fun TaskListScreen(modifier: Modifier = Modifier) {
 
 
-    var tasks = mutableListOf(
-        Task(title = "Asistir a clases", isCompleted = false),
-        Task(title = "Ir de compras", isCompleted = false)
-    )
+    val tasks = remember {
+
+        mutableStateListOf(
+            Task(title = "Asistir a clases", isCompleted = false),
+            Task(title = "Ir de compras", isCompleted = false)
+        )
+
+    }
 
     Scaffold { padding ->
         LazyColumn(modifier = modifier.padding(padding)) {
@@ -66,7 +71,8 @@ fun TaskListItem(
                 task.isCompleted = isCompleted.value
             }
         )
-        Text(task.title, modifier = modifier.weight(1f)
+        Text(
+            task.title, modifier = modifier.weight(1f)
         )
 
         IconButton(
