@@ -19,11 +19,17 @@ class ContactRepositoryImpl : ContactRepository {
         _contacts.value += contact
     }
 
-    override fun deleteContact() {
-        TODO("Not yet implemented")
+    override fun deleteContact(index: Int) {
+        val list = _contacts.value
+
+        _contacts.value = list.filterIndexed { i, contact ->
+            i != index
+        }
     }
 
-    override fun updateContact() {
-        TODO("Not yet implemented")
+    override fun updateContact(index: Int,contact: Contact) {
+        _contacts.value[index].name = contact.name
+        _contacts.value[index].phone = contact.phone
+        _contacts.value[index].company = contact.company
     }
 }

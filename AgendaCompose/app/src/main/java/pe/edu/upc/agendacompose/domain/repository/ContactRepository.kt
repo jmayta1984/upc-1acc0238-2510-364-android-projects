@@ -6,6 +6,6 @@ import pe.edu.upc.agendacompose.domain.model.Contact
 interface ContactRepository {
     fun getAll(): Flow<List<Contact>>
     fun addContact(contact: Contact)
-    fun deleteContact()
-    fun updateContact()
+    fun deleteContact(index: Int)
+    fun updateContact(index: Int, contact: Contact)
 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
@@ -24,7 +25,8 @@ import pe.edu.upc.agendacompose.domain.model.Contact
 fun ContactList(
     modifier: Modifier = Modifier,
     contacts: List<Contact> = emptyList(),
-    onAdd: () -> Unit = {}
+    onAdd: () -> Unit = {},
+    onPressed: (Int) -> Unit = {}
 ) {
     Scaffold(
         floatingActionButton = {
@@ -40,19 +42,36 @@ fun ContactList(
 
     { padding ->
         LazyColumn(modifier = modifier.padding(padding)) {
-            items(contacts) { contact ->
-                ContactListItem(contact = contact)
+
+            itemsIndexed(contacts) { index, contact ->
+                ContactListItem(
+                    index = index,
+                    contact = contact,
+                    onPressed = onPressed)
+
             }
+
         }
     }
 }
 
 @Composable
-fun ContactListItem(modifier: Modifier = Modifier, contact: Contact) {
-    Card (modifier = modifier.padding(8.dp)) {
-        Column(modifier = modifier
-            .fillMaxWidth()
-            .padding(8.dp)) {
+fun ContactListItem(
+    modifier: Modifier = Modifier,
+    index: Int,
+    contact: Contact,
+    onPressed: (Int) -> Unit = {}
+) {
+    Card(
+        onClick = {
+            onPressed(index)
+        },
+        modifier = modifier.padding(8.dp)) {
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
             Text(contact.name, fontWeight = FontWeight.Bold)
             Text(contact.company)
         }
