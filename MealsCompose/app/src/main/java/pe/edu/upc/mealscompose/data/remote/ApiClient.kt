@@ -7,11 +7,18 @@ object ApiClient {
     const val BASE_URL = "https://www.themealdb.com/api/json/v1/1/"
 
     fun getCategoryService(): CategoryService {
-
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(CategoryService::class.java)
+    }
+
+    fun getMealService(): MealService {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MealService::class.java)
     }
 }
