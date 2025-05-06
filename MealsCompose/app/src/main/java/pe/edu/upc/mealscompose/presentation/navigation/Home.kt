@@ -1,4 +1,4 @@
-package pe.edu.upc.mealscompose.presentation
+package pe.edu.upc.mealscompose.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -6,6 +6,8 @@ import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import pe.edu.upc.mealscompose.presentation.view.CategoryListView
+import pe.edu.upc.mealscompose.presentation.view.MealListview
 
 @Composable
 fun Home() {

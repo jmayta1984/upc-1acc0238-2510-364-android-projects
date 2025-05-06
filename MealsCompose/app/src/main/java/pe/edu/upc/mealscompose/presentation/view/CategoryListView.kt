@@ -1,4 +1,4 @@
-package pe.edu.upc.mealscompose.presentation
+package pe.edu.upc.mealscompose.presentation.view
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,20 +16,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import pe.edu.upc.mealscompose.data.remote.ApiClient
-import pe.edu.upc.mealscompose.data.repository.CategoryRepository
+import pe.edu.upc.mealscompose.presentation.di.PresentationModule
+import pe.edu.upc.mealscompose.presentation.viewmodel.CategoryListViewModel
+
 
 @Preview
 @Composable
 fun CategoryListView(
+    categoryListViewModel: CategoryListViewModel = PresentationModule.getCategoryListViewModel(),
     onTap: (String?) -> Unit = {}
 ) {
-    val categoryService = ApiClient.getCategoryService()
-    val categoryRepository = CategoryRepository(categoryService)
-    val categoryListViewModel = CategoryListViewModel(categoryRepository)
-    val categories = categoryListViewModel.categories.collectAsState()
-
     categoryListViewModel.getCategories()
+    val categories = categoryListViewModel.categories.collectAsState()
 
 
     Scaffold { padding ->

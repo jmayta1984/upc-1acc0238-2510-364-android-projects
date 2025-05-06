@@ -1,4 +1,4 @@
-package pe.edu.upc.mealscompose.presentation
+package pe.edu.upc.mealscompose.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

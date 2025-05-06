@@ -1,4 +1,4 @@
-package pe.edu.upc.mealscompose.presentation
+package pe.edu.upc.mealscompose.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,5 +19,11 @@ class MealListViewModel(val mealRepository: MealRepository): ViewModel() {
             _meals.value = mealRepository.getMealsByCategory(category)
         }
 
+    }
+
+    fun insertMeal(id: String, name: String){
+        viewModelScope.launch {
+            mealRepository.insertMeal(id, name)
+        }
     }
 }
