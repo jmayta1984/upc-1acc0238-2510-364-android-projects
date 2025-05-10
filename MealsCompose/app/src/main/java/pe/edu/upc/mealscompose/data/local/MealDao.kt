@@ -17,4 +17,7 @@ interface MealDao {
 
     @Delete
     suspend fun deleteMeal(meal: MealEntity)
+
+    @Query("select * from meals where id =:id")
+    suspend fun fetchMealById(id: String): List<MealEntity>
 }

@@ -30,25 +30,24 @@ fun CategoryListView(
     val categories = categoryListViewModel.categories.collectAsState()
 
 
-    Scaffold { padding ->
-        LazyColumn(modifier = Modifier.padding(padding)) {
-            items(categories.value) { category ->
-                Card(modifier = Modifier.padding(8.dp), onClick = { onTap(category.name) }) {
-                    Row {
-                        AsyncImage(
-                            model = category.poster,
-                            contentDescription = null,
-                            modifier = Modifier.size(96.dp)
-                        )
-                        Column(modifier = Modifier.padding(8.dp)) {
-                            Text(category.name ?: "", fontWeight = FontWeight.Bold)
-                            Text(category.description ?: "", maxLines = 2)
+    LazyColumn(modifier = Modifier.padding()) {
+        items(categories.value) { category ->
+            Card(modifier = Modifier.padding(8.dp), onClick = { onTap(category.name) }) {
+                Row {
+                    AsyncImage(
+                        model = category.poster,
+                        contentDescription = null,
+                        modifier = Modifier.size(96.dp)
+                    )
+                    Column(modifier = Modifier.padding(8.dp)) {
+                        Text(category.name ?: "", fontWeight = FontWeight.Bold)
+                        Text(category.description ?: "", maxLines = 2)
 
-                        }
                     }
                 }
-
             }
+
         }
     }
+
 }
